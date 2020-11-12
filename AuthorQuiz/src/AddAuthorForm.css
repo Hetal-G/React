@@ -1,0 +1,18 @@
+.AddAuthorForm {
+    width : 80%;
+    margin : 50px 10%;
+}
+
+.AddAuthorForm__input {
+    margin-bottom: 20px;
+}
+
+.AddAuthorForm__input > label {
+    display:block;
+    color: #0948f5;
+}
+
+input:required {
+    background:hsl(180, 50%, 90%);
+    border:1px solid #999;
+}
