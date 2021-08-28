@@ -31,13 +31,12 @@ const ExpenseForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const expenseData = {
-      id: Math.random().toString(),
+    const expense = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: enteredDate,
+      date: new Date(enteredDate),
     };
-    props.onSaveExpense(expenseData);
+    props.onSaveExpense(expense);
     //console.log(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
@@ -69,6 +68,7 @@ const ExpenseForm = (props) => {
           <label>Date</label>
           <input
             type="date"
+            data-date-format="yyyy-MM-dd"
             min="2019-01-01"
             max="2022-12-31"
             value={enteredDate}
@@ -77,9 +77,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit" onClick={onsubmit}>
-          Add Expense
-        </button>
+        <button type="submit">Add Expense</button>
       </div>
     </form>
   );

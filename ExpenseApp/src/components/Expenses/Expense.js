@@ -5,17 +5,7 @@ import ExpensesFilter from "./ExpensesFilter";
 import { useState } from "react";
 
 const Expense = (props) => {
-  let rows = [];
-  for (let index = 0; index < props.expenses.length; index++) {
-    rows.push(
-      <ExpenseItem
-        title={props.expenses[index].title}
-        amount={props.expenses[index].amount}
-        date={props.expenses[index].date}
-      />
-    );
-  }
-  const [filteredYear, setFilteredYear] = useState("");
+  const [filteredYear, setFilteredYear] = useState("2019");
   const onFilterByYear = (selectedYear) => {
     console.log("Year Selected : ", selectedYear);
     setFilteredYear(selectedYear);
@@ -23,8 +13,20 @@ const Expense = (props) => {
 
   return (
     <div>
-      <ExpensesFilter onFilterByYear={onFilterByYear} />
-      <Card className="expense">{rows}</Card>;
+      <Card className="expense">
+        <ExpensesFilter
+          selected={filteredYear}
+          onFilterByYear={onFilterByYear}
+        />
+        {props.expenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))}
+      </Card>
     </div>
   );
 };
