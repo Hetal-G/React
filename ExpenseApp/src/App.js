@@ -1,7 +1,8 @@
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem.js";
+import Expense from "./components/Expenses/Expense.js";
+import NewExpense from "./components/NewExpense/NewExpense.js";
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: "e1",
@@ -22,43 +23,24 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-    {
-      id: "e5",
-      title: "Groceries",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    {
-      id: "e6",
-      title: "Groceries",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    {
-      id: "e7",
-      title: "Groceries",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    {
-      id: "e8",
-      title: "Groceries",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
   ];
 
-  let rows = [];
-  for (let index = 0; index < expenses.length; index++) {
-    rows.push(
-      <ExpenseItem
-        title={expenses[index].title}
-        amount={expenses[index].amount}
-        date={expenses[index].date}
-      />
-    );
-  }
-
+  const onSaveExpense = (expenseData) => {
+    console.log("Adding New Expense List :");
+    expenseData.id = Math.random().toString();
+    console.log("ID : ", ...expenseData.id);
+    console.log("Title : ", ...expenseData.title);
+    console.log("Amount : ", ...expenseData.amount);
+    console.log("Date : ", ...expenseData.date);
+    expenses.push(expenseData);
+    console.log("New Expense List :");
+    for (let i = 0; i < expenses.length; i++) {
+      console.log("ID : ", expenses[i].id);
+      console.log("Title : ", expenses[i].title);
+      console.log("Amount : ", expenses[i].amount);
+      console.log("Date : ", expenses[i].date);
+    }
+  };
   return (
     <div>
       <img
@@ -68,9 +50,10 @@ function App() {
         width="15%"
         height="15%"
       />
-      <div>{rows}</div>
+      <NewExpense onSaveExpense={onSaveExpense} />
+      <Expense expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
