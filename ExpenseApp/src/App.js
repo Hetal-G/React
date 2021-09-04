@@ -38,13 +38,13 @@ const App = () => {
   };
   return (
     <div>
-      <img
+      {/* <img
         className="App-logo"
         src="ihub-logo.png"
         alt="IHub Logo"
         width="15%"
         height="15%"
-      />
+      /> */}
       <NewExpense onSaveExpense={onSaveExpense} />
       <Expense expenses={expenses} />
     </div>
